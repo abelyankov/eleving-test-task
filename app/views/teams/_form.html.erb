@@ -1,0 +1,5 @@
+<%= form_for team, url: url do |form| %>
+  <%= render 'partials/errors', record: team %>
+  <%= form.text_field :name, placeholder: 'Name', required: true %>
+  <%= form.submit 'Save' %>
+<% end %>

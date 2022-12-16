@@ -1,0 +1,6 @@
+<%= form_for tournament, url: url do |form| %>
+  <%= render 'partials/errors', record: tournament %>
+  <%= form.text_field :name, placeholder: 'Name', required: true %>
+  <br/>
+  <%= form.submit 'Save' %>
+<% end %>

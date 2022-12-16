@@ -1,0 +1,13 @@
+<% breadcrumb :new_participant, @tournament%>
+
+<h1>Create new participant</h1>
+<%= form_for @participant, url: tournament_participants_path(@tournament) do |form| %>
+  <%= render 'partials/errors', record: @participant %>
+  <%= form.label :team_id %>
+  <%= form.hidden_field :tournament_id, value: @tournament.id %>
+  <%= form.select :team_id, Team.all.map {|t| [t.name, t.id]}, include_blank: true %>
+  <br/>
+  <%= form.submit %>
+  <br/>
+  <%= link_to 'Create new team', new_team_tournament_participants_path(@tournament) %>
+<% end %>

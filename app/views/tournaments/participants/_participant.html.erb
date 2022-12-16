@@ -1,0 +1,6 @@
+<li>
+  <%= participant.team.name %>
+  <%= "(points: #{participant.points})" %>
+  <%= button_to 'Destroy', tournament_participant_path(@tournament, participant),
+      method: :delete, data: {confirm: 'Are you sure?'} if allow_destroy %>
+</li>

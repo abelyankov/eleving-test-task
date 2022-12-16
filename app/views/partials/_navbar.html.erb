@@ -1,0 +1,13 @@
+<ul>
+  <li> <%= link_to 'Tournaments', tournaments_path %> </li>
+  <% if @tournament.present? && !@tournament.new_record? %>
+    <ul>
+      <li><%= link_to 'Participants', tournament_participants_path(@tournament) %></li>
+      <li><%= link_to 'Division Games', tournament_division_games_path(@tournament) %></li>
+      <li><%= link_to 'Playoff', tournament_playoff_index_path(@tournament) %></li>
+      <li><%= link_to 'Quarter final', tournament_quarter_final_index_path(@tournament)%></li>
+      <li><%= link_to 'Final', tournament_final_index_path(@tournament)%></li>
+    </ul>
+  <% end %>
+  <li> <%= link_to 'Teams', teams_path %> </li>
+</ul>

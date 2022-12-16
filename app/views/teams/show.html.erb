@@ -1,0 +1,11 @@
+<% breadcrumb :team, @team %>
+
+<h1>Team view</h1>
+
+Name: <%= @team.name %>
+Tournaments:
+<ul>
+  <% @team.tournaments.each do |tournament| %>
+    <li><%= tournament.name %></li>
+  <% end %>
+</ul>

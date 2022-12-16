@@ -1,0 +1,33 @@
+<% breadcrumb :quarter_final, @tournament %>
+
+<h1>Quarter final</h1>
+
+<%= button_to 'Start quarter final', generate_tournament_quarter_final_index_path(@tournament) %>
+
+<ul>
+  <% @quarter_final_participants.each do |participant| %>
+    <li>
+      <%= participant.team.name %> <%= participant.points%> <%= participant.division %>
+    </li>
+  <% end %>
+</ul>
+
+<table>
+  <tr>
+    <th>Home</th>
+    <th>Guest</th>
+    <th>Result</th>
+  </tr>
+  <% @games.decorate.each do |game| %>
+    <tr>
+      <td>
+        <%= game.home_team %>
+      </td>
+      <td>
+        <%= game.away_team %>
+      </td>
+      <td><%= game.home_team_score %>/<%= game.away_team_score %></td>
+      <td><%= button_to 'Remove game', tournament_quarter_final_path(@tournament, game), method: :delete %></td>
+    </tr>
+  <% end %>
+</table>

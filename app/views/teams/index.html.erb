@@ -1,0 +1,7 @@
+<% breadcrumb :teams %>
+
+<h1>Teams</h1>
+<%= button_to 'Create new', new_team_path, method: :get %>
+<ul>
+  <%= render @teams %>
+</ul>

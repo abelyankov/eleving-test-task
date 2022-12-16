@@ -1,0 +1,7 @@
+<li>
+  <%= team.name %>
+  <%= button_to 'Show', team_path(team), method: :get %>
+  <%= button_to 'Edit', edit_team_path(team), method: :get %>
+  <%= button_to 'Destroy', team_path(team),
+   method: :delete, data: { confirm: 'Are you sure?', disable_with: 'Loading...' } %>
+</li>

@@ -1,0 +1,19 @@
+<% breadcrumb :participants, @tournament %>
+<h1>List of participants</h1>
+
+<% if @tournament.draft? %>
+  <%= button_to 'Select team', new_tournament_participant_path(@tournament), method: :get %>
+  <%= button_to 'Generate randomly', generate_tournament_participants_path(@tournament) %>
+  <%= button_to 'Start tournament', start_tournament_path(@tournament) %>
+
+  <ul>
+    <%= render partial: 'participant', collection: @participants, locals: { allow_destroy: true } %>
+  </ul>
+<% else %>
+  <% Participant.divisions.each do |division| %>
+    <h3><%= division[0].capitalize %></h3>
+    <ul>
+      <%= render partial: 'participant', collection: @participants.division(division[0]), locals: { allow_destroy: false } %>
+    </ul>
+  <% end %>
+<% end %>

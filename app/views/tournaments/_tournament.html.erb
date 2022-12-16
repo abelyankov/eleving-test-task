@@ -1,0 +1,11 @@
+<li>
+  <%= "Name: #{tournament.name};" %>
+  <%= "Status: #{tournament.status.capitalize};" %>
+  <%= "Winner: #{tournament.winner&.team&.name || '-'};" %>
+  <%= "Finalist: #{tournament.finalist&.team&.name || '-'};" %>
+  <%= "Particiapnts: #{tournament.participants.size} " %>
+  <%= button_to 'Show', tournament_path(tournament), method: :get %>
+  <%= button_to 'Edit', edit_tournament_path(tournament), method: :get %>
+  <%= button_to 'Destroy', tournament_path(tournament),
+   method: :delete, data: { confirm: 'Are you sure?', disable_with: 'Loading...' } %>
+</li>

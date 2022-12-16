@@ -1,0 +1,10 @@
+<% breadcrumb :division_games, @tournament %>
+
+<h1>Division Games</h1>
+
+<% Game.divisions.each do |division| %>
+  <h3><%= division[0].capitalize %></h3>
+  <%= button_to "Generate games", generate_tournament_division_games_path(@tournament, division: division[0]) %>
+  <%= render partial: 'division_section', locals: { games: @games.division(division[0]).decorate } %>
+  <br/>
+<% end %>

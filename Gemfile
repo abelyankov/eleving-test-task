@@ -8,6 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'draper'
 gem 'faker'
 gem 'gretel'
 gem 'jbuilder', '~> 2.5'
@@ -20,7 +21,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'solidservice'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
-gem 'draper'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -28,6 +28,7 @@ end
 
 group :development do
   gem 'listen', '~> 3.0.5'
+  gem 'rspec-rails'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'

@@ -25,7 +25,6 @@ x-backend: &backend
     - db_data:/app/var/lib/mysql
   environment:
     <<: *env
-    # RAILS_MASTER_KEY: 6090e9b1243cb4b1c5de6f024327aa76
     DATABASE_NAME_TEST: task_test
     DATABASE_NAME_DEV: task_dev
     DATABASE_USER: root
@@ -56,10 +55,6 @@ services:
      MYSQL_ROOT_PASSWORD: root
      MYSQL_USERNAME: root
      MYSQL_PASSWORD: root
-    expose:
-      - '3306'
-    logging:
-      driver: none
     ports:
       - "3306:3306"
 

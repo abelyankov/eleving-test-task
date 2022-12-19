@@ -16,16 +16,4 @@ class Tournament < ApplicationRecord
 
   # Nested attirbutes
   accepts_nested_attributes_for :participants, allow_destroy: true
-
-  def draft?
-    status == 'draft'
-  end
-
-  def in_progress?
-    status == 'in_progress'
-  end
-
-  def finished?
-    status == 'finished'
-  end
 end

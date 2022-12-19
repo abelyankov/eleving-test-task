@@ -38,7 +38,7 @@ module Tournaments
     end
 
     def generate
-      result = ParticipantService.call(tournament: @tournament)
+      result = Participants::GenerateService.call(tournament: @tournament)
       if result.success?
         redirect_to tournament_participants_path(@tournament),
                     flash: { success: 'Participants were successfully generated.' }

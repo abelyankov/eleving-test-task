@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Tournaments
+  # playoff controller
   class PlayoffController < ApplicationController
     before_action :set_tournament
 
@@ -11,8 +12,7 @@ module Tournaments
     end
 
     def generate
-      
-      result = PlayoffService.call(tournament: @tournament, participants: playoff_participants)
+      result = Games::PlayoffService.call(tournament: @tournament, participants: playoff_participants)
       if result.success?
         redirect_to tournament_playoff_index_path(@tournament),
                     flash: { success: 'Playoff games were successfully generated.' }
@@ -23,7 +23,7 @@ module Tournaments
 
     def destroy
       game = Game.find(params[:id])
-      result = GameDestroyService.call(game: game, home_points: game.home_team_score, away_points: game.away_team_score)
+      result = Games::DestroyService.call(game: game, home_points: game.home_score, away_points: game.away_score)
       if result.success?
         redirect_to tournament_playoff_index_path(@tournament), flash: { success: 'Games destroyed' }
       else
@@ -32,6 +32,7 @@ module Tournaments
     end
 
     private
+
     def set_tournament
       @tournament = Tournament.includes(:games, participants: :team).find(params[:tournament_id])
     rescue ActiveRecord::RecordNotFound

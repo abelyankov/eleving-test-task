@@ -17,14 +17,14 @@ ActiveRecord::Schema.define(version: 20221215183515) do
     t.integer  "division"
     t.integer  "status"
     t.integer  "tournament_id"
-    t.integer  "home_team_id"
-    t.integer  "away_team_id"
-    t.integer  "home_team_score"
-    t.integer  "away_team_score"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["away_team_id"], name: "index_games_on_away_team_id", using: :btree
-    t.index ["home_team_id"], name: "index_games_on_home_team_id", using: :btree
+    t.integer  "home_id"
+    t.integer  "away_id"
+    t.integer  "home_score"
+    t.integer  "away_score"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["away_id"], name: "index_games_on_away_id", using: :btree
+    t.index ["home_id"], name: "index_games_on_home_id", using: :btree
     t.index ["tournament_id"], name: "index_games_on_tournament_id", using: :btree
   end
 

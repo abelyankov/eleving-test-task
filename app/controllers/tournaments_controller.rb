@@ -51,9 +51,10 @@ class TournamentsController < ApplicationController
   end
 
   def start
-    result = StartTournamentService.call(tournament: @tournament)
+    result = Tournaments::StartService.call(tournament: @tournament)
     if result.success?
-      redirect_to tournament_division_games_path(@tournament), flash: { success: 'Tournament was successfully started.' }
+      redirect_to tournament_division_games_path(@tournament),
+                  flash: { success: 'Tournament was successfully started.' }
     else
       redirect_to tournament_participants_path(@tournament), flash: { error: result.error }
     end

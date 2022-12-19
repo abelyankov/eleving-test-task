@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Game decorator
 class GameDecorator < Draper::Decorator
   delegate_all
 

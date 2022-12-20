@@ -2,11 +2,12 @@
 
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Participants::GenerateService, type: :service do
   context '#call' do
-    let (:tournament) { Tournament.create(name: 'test') }
-    let (:draft_tournament) { Tournament.create(name: 'test_draft', status: 0) }
-    let (:finished_tournament) { Tournament.create(name: 'test_finished', status: 2) }
+    let(:tournament) { Tournament.create(name: 'test') }
+    let(:draft_tournament) { Tournament.create(name: 'test_draft', status: 0) }
+    let(:finished_tournament) { Tournament.create(name: 'test_finished', status: 2) }
 
     it 'should not generate if tournament is not present' do
       result = described_class.call(tournament: nil)
@@ -40,3 +41,4 @@ RSpec.describe Participants::GenerateService, type: :service do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

@@ -1566,7 +1566,7 @@ Metrics/BlockLength:
   CountComments: false  # count full line comments?
   Max: 25
   Exclude:
-    - "**/*_spec.rb"
+    - "spec/**/*"
     - "**/factories/**/*.rb"
     - "**/db/migrate/**/*.rb"
     - "**/config/**/*.rb"

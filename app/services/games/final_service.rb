@@ -6,7 +6,7 @@ module Games
     def call
       validate_tournament
       unless division_finished? && quarter_final_finished? && playoff_finished?
-        return fail!(error: 'You can\'t generate final games until division, playoff games and quarter final games are played')
+        return fail!(error: 'You can\'t generate final games until previous games final games are played')
       end
 
       generate_games

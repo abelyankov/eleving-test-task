@@ -2,11 +2,12 @@
 
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Tournaments::StartService, type: :service do
   context '#call' do
-    let (:in_progress_tournament) { Tournament.create(name: 'test_in_progress', status: 1) }
-    let (:finished_tournament) { Tournament.create(name: 'test_finished', status: 2)}
-    let (:draft_tournament) { Tournament.create(name: 'test_draft', status: 0) }
+    let(:in_progress_tournament) { Tournament.create(name: 'test_in_progress', status: 1) }
+    let(:finished_tournament) { Tournament.create(name: 'test_finished', status: 2) }
+    let(:draft_tournament) { Tournament.create(name: 'test_draft', status: 0) }
 
     it 'should not start if tournament in progress' do
       result = described_class.call(tournament: in_progress_tournament)
@@ -28,7 +29,7 @@ RSpec.describe Tournaments::StartService, type: :service do
         team = Team.create(name: "test_#{i}")
         Participant.create(team: team, tournament_id: draft_tournament.id)
       end
-      
+
       result = described_class.call(tournament: draft_tournament)
 
       expect(result.success?).to eq(true)
@@ -38,3 +39,4 @@ RSpec.describe Tournaments::StartService, type: :service do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

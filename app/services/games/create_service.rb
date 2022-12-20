@@ -3,9 +3,9 @@
 module Games
   # Create game service
   class CreateService < MainService
-    def call
+    def call # rubocop:disable Metrics/AbcSize
       return fail!(error: 'Tournament finished') if tournament.finished?
-      return fail!(error: 'Status not valid') unless status.present? && Game.statuses.include?(status)
+      return fail!(error: 'Status not valid') unless status.present?
 
       if game.save
         update_points(home, home_result)

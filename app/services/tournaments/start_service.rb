@@ -4,7 +4,7 @@ module Tournaments
   # start tournament service
   class StartService < ::SolidService::Base
     MAX_PARTICIPANTS = 16
-    
+
     def call
       return fail!(error: 'Tournament is already started') if tournament.in_progress?
       return fail!(error: 'Tournament is already finished') if tournament.finished?

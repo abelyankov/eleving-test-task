@@ -3,18 +3,17 @@
 module Games
   # GameDestroyService
   class DestroyService < MainService
-    def call
+    def call # rubocop:disable Metrics/AbcSize
       return fail!(error: 'Tournament finished') if game.tournament.finished?
       return fail!(error: 'Tournament did not started') if game.tournament.draft?
 
       if game.destroy
         update_points(game.home, home_points)
         update_points(game.away, away_points)
+        success!
+      else
+        fail!(error: game.errors.full_messages.join('; '))
       end
-    rescue StandardError => e
-      fail!(error: e.message)
-    else
-      success!
     end
 
     private

@@ -39,11 +39,11 @@ module Games
     end
 
     def home_result
-      params[:home_result] || Faker::Number.between(from: 1, to: 10)
+      params[:home_result] || rand(20)
     end
 
     def away_result
-      params[:away_result] || Faker::Number.between(from: 1, to: 10)
+      params[:away_result] || rand(10)
     end
 
     def update_points(participant, result)

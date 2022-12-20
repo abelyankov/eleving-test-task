@@ -23,7 +23,7 @@ module Tournaments
       if @participant.save
         redirect_to tournament_participants_path(@tournament)
       else
-        render :new
+        render params.dig(:participant, :team_attributes).present? ? :new_team : :new
       end
     end
 

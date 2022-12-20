@@ -27,15 +27,14 @@ module Games
       away = participants.first
       home = participants.last
       result = Games::CreateService.call!(away: away, home: home, status: :final, tournament: tournament)
-      set_final_results if result.success?
+      final_results(result.game) if result.success?
     rescue StandardError => e
       fail!(error: e.message)
     end
 
-    def set_final_results
+    def final_results(game)
       tournament.reload
-      finalists = tournament.participants.order(points: :desc).limit(2)
-      tournament.update!(status: :finished, winner: finalists.first, finalist: finalists.last)
+      tournament.update!(status: :finished, winner: game.winner, finalist: game.loser)
     end
   end
 end

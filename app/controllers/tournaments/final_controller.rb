@@ -23,7 +23,7 @@ module Tournaments
 
     def destroy
       game = Game.find(params[:id])
-      result = GameDestroyService.call(game: game, home_points: game.home_score, away_points: game.away_score)
+      result = Games::DestroyService.call(game: game, home_points: game.home_score, away_points: game.away_score)
       if result.success?
         redirect_to tournament_final_index_path(@tournament), flash: { success: 'Games destroyed' }
       else
@@ -40,7 +40,7 @@ module Tournaments
     end
 
     def final_participants
-      @final_participants ||= @tournament.participants.order(points: :desc).limit(2)
+      @final_participants ||= @tournament.games.status(:quarter_final).map(&:winner).compact
     end
   end
 end

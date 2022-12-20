@@ -31,11 +31,13 @@ module Games
     def generate_first_playoff_games
       while participants.size.positive?
         participants.minmax_by(&:points).each_slice(2) do |home, away|
+          game_first_variant = Game.find_by(status: :playoff, home: away, away: home, tournament: tournament)
+          game_second_variant = Game.find_by(status: :playoff, home: home, away: away, tournament: tournament)
+          next if game_first_variant.present? || game_second_variant.present?
+
           create_game(home, away)
         end
       end
-    rescue StandardError => e
-      fail!(error: e.message)
     end
 
     def create_game(home, away)

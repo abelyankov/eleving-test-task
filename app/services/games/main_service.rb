@@ -8,6 +8,10 @@ module Games
     PLAYOFF_GAMES = 4
     QUARTER_FINAL_GAMES = 2
 
+    def group_division_finished?(division)
+      tournament.games.status(:division).division(division).size == DIVISION_GAMES
+    end
+
     def division_finished?
       tournament.games.status(:division).size == ALL_DIVISIONS_GAMES
     end

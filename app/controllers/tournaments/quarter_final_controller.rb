@@ -8,7 +8,7 @@ module Tournaments
     def index
       quarter_final_participants
 
-      @games = @tournament.games.status(:quarter_final)
+      games
     end
 
     def generate
@@ -39,8 +39,16 @@ module Tournaments
       redirect_to tournaments_path, flash: { error: 'Tournament not found' }
     end
 
+    def games
+      @games ||= @tournament.games.status(:quarter_final)
+    end
+
+    def playoff_games
+      @playoff_games ||= @tournament.games.status(:playoff)
+    end
+
     def quarter_final_participants
-      @quarter_final_participants ||= @tournament.participants.order(points: :desc).limit(4).to_a
+      @quarter_final_participants ||= playoff_games.map(&:winner)
     end
   end
 end

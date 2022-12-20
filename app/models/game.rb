@@ -26,4 +26,14 @@ class Game < ApplicationRecord
   def away_winner?
     home_score < away_score
   end
+
+  def winner
+    return home if home_winner?
+    return away if away_winner?
+  end
+
+  def loser
+    return away if home_winner?
+    return home if away_winner?
+  end
 end

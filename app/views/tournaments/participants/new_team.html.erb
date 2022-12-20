@@ -7,6 +7,7 @@
   <br/>
   <%= form.label 'New team' %>
   <%= form.fields_for :team do |team_form| %>
+    <%= team_form.hidden_field :id %>
     <%= team_form.text_field :name, placeholder: 'Team name' %>
   <% end %>
   <br/>

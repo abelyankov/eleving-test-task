@@ -7,7 +7,7 @@
 <ul>
   <% @quarter_final_participants.each do |participant| %>
     <li>
-      <%= participant.team.name %> <%= participant.points%> <%= participant.division %>
+      <%= participant&.team&.name %> <%= participant&.points %> <%= participant&.division %>
     </li>
   <% end %>
 </ul>

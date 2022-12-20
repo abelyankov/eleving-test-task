@@ -66,8 +66,8 @@ AllCops:
     - 'vendor/**/*'
     - '.git/**/*'
     - 'bin/*'
-    - 'db/**/*'
-    - 'config/**/*'
+    - 'db/schema.rb'
+    - 'db/migrate/*_init_schema.rb'
   # Default formatter will be used if no `-f/--format` option is given.
   DefaultFormatter: progress
   # Cop names are displayed in offense messages by default. Change behavior
@@ -1566,10 +1566,9 @@ Metrics/BlockLength:
   CountComments: false  # count full line comments?
   Max: 25
   Exclude:
-    - "spec/**/*"
+    - "**/*_spec.rb"
     - "**/factories/**/*.rb"
     - "**/db/migrate/**/*.rb"
-    - "**/config/**/*.rb"
   IgnoredMethods:
     - refine
     - describe
@@ -1670,7 +1669,7 @@ Metrics/MethodLength:
   Exclude:
   # Excluding feature helper methods
   - spec/features/**/*
-  - "**/db/**/*.rb"
+  - db/migrate/**/*
 
 Metrics/ModuleLength:
   CountComments: false  # count full line comments?

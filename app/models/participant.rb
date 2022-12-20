@@ -9,7 +9,6 @@ class Participant < ApplicationRecord
   belongs_to :tournament, validate: true
 
   # Validations
-  validates :team_id, presence: true
   validates :team_id, uniqueness: { scope: :tournament_id }
   validate :maximum_participants, on: :create
 

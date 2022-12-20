@@ -21,6 +21,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'solidservice'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
+gem 'nokogiri'
 
 group :development, :test do
   gem 'byebug', platform: :mri

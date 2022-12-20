@@ -8,11 +8,11 @@ RUN apt-get clean all && apt-get update -qq && apt-get install -y build-essentia
 
 RUN mkdir /app
 WORKDIR /app
+RUN chmod 755 /app
 
 # # Adding gems
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 RUN bundle install
 RUN bundle config set force_ruby_platform true
-
 COPY . /app

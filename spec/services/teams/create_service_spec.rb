@@ -2,13 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.describe Team::CreateService, type: :service do
+RSpec.describe Teams::CreateService, type: :service do
   context 'when quantity is present and greater than 0' do
     let(:quantity) { 1 }
 
     it 'creates new team' do
       result = described_class.call(quantity: quantity)
-
       expect(result.success?).to be_truthy
     end
   end

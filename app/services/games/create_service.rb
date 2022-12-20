@@ -5,14 +5,15 @@ module Games
   class CreateService < MainService
     def call
       return fail!(error: 'Tournament finished') if tournament.finished?
+      return fail!(error: 'Status not valid') unless status.present? && Game.statuses.include?(status)
+
       if game.save
         update_points(home, home_result)
         update_points(away, away_result)
+        success!(game: game)
+      else
+        fail!(error: game.errors.full_messages.join('; '))
       end
-    rescue StandardError => e
-      fail!(error: e.message)
-    else
-      success!
     end
 
     private

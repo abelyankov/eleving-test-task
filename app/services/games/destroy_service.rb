@@ -4,10 +4,12 @@ module Games
   # GameDestroyService
   class DestroyService < MainService
     def call
-      return fail!(error: 'Tournament finished') if tournament.finished?
+      return fail!(error: 'Tournament finished') if game.tournament.finished?
+      return fail!(error: 'Tournament did not started') if game.tournament.draft?
+
       if game.destroy
-        update_points(game.home, away_points)
-        update_points(game.away, home_points)
+        update_points(game.home, home_points)
+        update_points(game.away, away_points)
       end
     rescue StandardError => e
       fail!(error: e.message)
